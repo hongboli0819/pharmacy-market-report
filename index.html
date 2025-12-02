@@ -1051,10 +1051,129 @@
             }
         }
 
+        /* Mobile Menu Button & Panel */
+        .mobile-menu-btn {
+            display: none;
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 1000;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-btn:hover {
+            background: var(--primary-dark);
+        }
+        
+        .mobile-menu-btn.active {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+        }
+        
+        .mobile-nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .mobile-nav-overlay.show {
+            opacity: 1;
+        }
+        
+        .mobile-nav-panel {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -280px;
+            width: 280px;
+            height: 100%;
+            background: var(--bg-white);
+            z-index: 1001;
+            box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+        
+        .mobile-nav-panel.show {
+            right: 0;
+        }
+        
+        .mobile-nav-header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .mobile-nav-header h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .mobile-nav-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+        
+        .mobile-nav-list {
+            padding: 12px 0;
+        }
+        
+        .mobile-nav-list a {
+            display: block;
+            padding: 14px 20px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 15px;
+            border-bottom: 1px solid var(--border-light);
+            transition: all 0.2s ease;
+        }
+        
+        .mobile-nav-list a:hover,
+        .mobile-nav-list a:active {
+            background: rgba(212, 168, 83, 0.1);
+            color: var(--accent-gold);
+        }
+        
+        @media (max-width: 1200px) {
+            .mobile-menu-btn,
+            .mobile-nav-overlay,
+            .mobile-nav-panel {
+                display: block;
+            }
+        }
+        
         /* Print Styles */
         @media print {
-            .nav-sidebar {
-                display: none;
+            .nav-sidebar,
+            .mobile-menu-btn,
+            .mobile-nav-overlay,
+            .mobile-nav-panel {
+                display: none !important;
             }
             .main-content {
                 margin-left: 0;
@@ -1085,6 +1204,37 @@
     </style>
 </head>
 <body>
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn">📑 目录</button>
+    
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    
+    <!-- Mobile Nav Panel -->
+    <div class="mobile-nav-panel" id="mobileNavPanel">
+        <div class="mobile-nav-header">
+            <h3>📑 报告目录</h3>
+            <button class="mobile-nav-close" id="mobileNavClose">×</button>
+        </div>
+        <div class="mobile-nav-list">
+            <a href="#background" class="mobile-nav-link">研究背景</a>
+            <a href="#conclusion" class="mobile-nav-link">核心结论</a>
+            <a href="#part1" class="mobile-nav-link">一、执行摘要</a>
+            <a href="#part2" class="mobile-nav-link">二、项目概况</a>
+            <a href="#part3" class="mobile-nav-link">三、宏观市场</a>
+            <a href="#part4" class="mobile-nav-link">四、区域快照</a>
+            <a href="#part5" class="mobile-nav-link">五、渠道组织</a>
+            <a href="#part6" class="mobile-nav-link">六、KA策略</a>
+            <a href="#part7" class="mobile-nav-link">七、消费者洞察</a>
+            <a href="#part8" class="mobile-nav-link">八、医保策略</a>
+            <a href="#part9" class="mobile-nav-link">九、产品策略</a>
+            <a href="#part10" class="mobile-nav-link">十、O2O战略</a>
+            <a href="#part11" class="mobile-nav-link">十一、行动计划</a>
+            <a href="#part12" class="mobile-nav-link">十二、风险缓释</a>
+            <a href="#part13" class="mobile-nav-link">十三、决策需求</a>
+        </div>
+    </div>
+
     <!-- Header -->
     <header class="report-header">
         <div class="header-content">
@@ -3637,7 +3787,7 @@
     </main>
 
     <script>
-        // Smooth scroll for navigation
+        // Smooth scroll for desktop navigation
         document.querySelectorAll('.nav-sidebar a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -3669,6 +3819,66 @@
                 if (link.getAttribute('href') === '#' + current) {
                     link.classList.add('active');
                 }
+            });
+        });
+
+        // Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+        const mobileNavPanel = document.getElementById('mobileNavPanel');
+        const mobileNavClose = document.getElementById('mobileNavClose');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        // Function to open mobile menu
+        function openMobileMenu() {
+            mobileNavOverlay.classList.add('show');
+            mobileNavPanel.classList.add('show');
+            mobileMenuBtn.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Function to close mobile menu
+        function closeMobileMenu() {
+            mobileNavOverlay.classList.remove('show');
+            mobileNavPanel.classList.remove('show');
+            mobileMenuBtn.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Toggle menu on button click
+        mobileMenuBtn.addEventListener('click', function() {
+            if (mobileNavPanel.classList.contains('show')) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        });
+
+        // Close menu on overlay click
+        mobileNavOverlay.addEventListener('click', closeMobileMenu);
+
+        // Close menu on close button click
+        mobileNavClose.addEventListener('click', closeMobileMenu);
+
+        // Handle mobile nav link clicks - scroll and close menu
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                
+                // Close menu first
+                closeMobileMenu();
+                
+                // Then scroll to target after a short delay
+                setTimeout(() => {
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }, 300);
             });
         });
     </script>
