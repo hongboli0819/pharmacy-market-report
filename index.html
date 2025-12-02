@@ -800,23 +800,254 @@
         }
 
         @media (max-width: 768px) {
+            html, body {
+                overflow-x: hidden;
+                width: 100%;
+            }
+            
             .main-content {
-                padding: 40px 20px;
+                padding: 30px 16px;
+                max-width: 100%;
+                overflow-x: hidden;
             }
+            
             .metrics-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr !important;
+                gap: 12px;
             }
+            
             .city-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr !important;
+                gap: 16px;
             }
+            
             .kpi-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr !important;
+                gap: 12px;
             }
+            
             .report-title {
-                font-size: 28px;
+                font-size: 24px;
+                letter-spacing: 0;
             }
+            
+            .report-subtitle {
+                font-size: 14px;
+            }
+            
+            .report-header {
+                padding: 50px 0 40px;
+            }
+            
+            .header-content {
+                padding: 0 20px;
+            }
+            
+            .report-meta {
+                flex-direction: column;
+                gap: 8px;
+                font-size: 12px;
+            }
+            
             .reference-list ul {
                 grid-template-columns: 1fr;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            
+            .section-title {
+                font-size: 22px;
+            }
+            
+            .subsection-title {
+                font-size: 17px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .metric-card {
+                padding: 20px;
+            }
+            
+            .metric-value {
+                font-size: 28px;
+            }
+            
+            .executive-summary {
+                padding: 24px;
+            }
+            
+            .summary-text {
+                font-size: 15px;
+                line-height: 1.8;
+            }
+            
+            .decision-box {
+                padding: 24px;
+            }
+            
+            .decision-title {
+                font-size: 16px;
+            }
+            
+            .decision-content {
+                font-size: 14px;
+            }
+            
+            .data-table {
+                font-size: 12px;
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .data-table th,
+            .data-table td {
+                padding: 10px 8px;
+                white-space: nowrap;
+            }
+            
+            .background-section {
+                padding: 24px;
+            }
+            
+            .background-title {
+                font-size: 18px;
+            }
+            
+            .kpi-block {
+                padding: 20px;
+            }
+            
+            .kpi-value {
+                font-size: 20px;
+            }
+            
+            .city-body {
+                padding: 16px;
+            }
+            
+            .city-name {
+                font-size: 16px;
+            }
+            
+            /* Fix inline grid styles */
+            [style*="grid-template-columns: repeat(3"] {
+                grid-template-columns: 1fr !important;
+            }
+            
+            [style*="grid-template-columns: repeat(4"] {
+                grid-template-columns: 1fr !important;
+            }
+            
+            [style*="grid-template-columns: repeat(5"] {
+                grid-template-columns: 1fr !important;
+            }
+            
+            [style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+            }
+            
+            /* Timeline adjustments */
+            .timeline {
+                padding-left: 24px;
+            }
+            
+            .timeline-item {
+                padding: 16px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 20px 12px;
+            }
+            
+            .report-title {
+                font-size: 20px;
+            }
+            
+            .section-title {
+                font-size: 18px;
+            }
+            
+            .metric-value {
+                font-size: 24px;
+            }
+            
+            .card {
+                padding: 16px;
+            }
+            
+            .executive-summary {
+                padding: 20px;
+            }
+            
+            .summary-text {
+                font-size: 14px;
+            }
+        }
+        
+        /* Responsive Grid Classes */
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .grid-3-col {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .metrics-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .metrics-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        
+        .city-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .kpi-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .kpi-grid-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        
+        .kpi-grid-5 {
+            grid-template-columns: repeat(5, 1fr);
+        }
+        
+        @media (max-width: 768px) {
+            .timeline-grid,
+            .grid-2-col,
+            .grid-3-col,
+            .metrics-3,
+            .metrics-4,
+            .city-grid-3,
+            .kpi-grid-3,
+            .kpi-grid-4,
+            .kpi-grid-5 {
+                grid-template-columns: 1fr !important;
+                gap: 16px;
             }
         }
 
@@ -1266,7 +1497,7 @@
                     <h3 class="subsection-title">江苏/苏州的经济与人口结构</h3>
                 </div>
 
-                <div class="metrics-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="metrics-grid metrics-3">
                     <div class="metric-card">
                         <div class="metric-value">2.67万亿</div>
                         <div class="metric-label">苏州市GDP<br>全国城市第6</div>
@@ -1609,7 +1840,7 @@
                     <h3 class="subsection-title">KA对照：OTC端"NKA普涨、LKA普跌"</h3>
                 </div>
 
-                <div class="metrics-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="metrics-grid metrics-3">
                     <div class="metric-card">
                         <div class="metric-value up">+8%</div>
                         <div class="metric-label">NKA同比增长<br>25年1-4月江苏OTC</div>
@@ -1682,7 +1913,7 @@
                     <h3 class="subsection-title">应对框架：总部拉动—门店赋能—消费者教育"三段式"</h3>
                 </div>
 
-                <div class="city-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="city-grid city-grid-3">
                     <div class="city-card">
                         <div class="city-header" style="background: linear-gradient(135deg, #2c3e50, #34495e);">
                             <span class="city-name">总部侧</span>
@@ -1842,7 +2073,7 @@
                         海王星辰止跌回稳的"四点方案"
                     </div>
                     <div class="card-content">
-                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                        <div class="grid-2-col">
                             <div>
                                 <p style="font-weight: 600; color: var(--primary-dark); margin-bottom: 8px;">1. 提升单提与结构激励</p>
                                 <p style="font-size: 14px; color: var(--text-secondary);">设置核心品单提（如1.5元/推荐）+合规奖，替代"任务硬买"</p>
@@ -1944,7 +2175,7 @@
                     <h3 class="subsection-title">核心画像：双峰年龄结构与医保主导支付</h3>
                 </div>
 
-                <div class="metrics-grid" style="grid-template-columns: repeat(4, 1fr);">
+                <div class="metrics-grid metrics-4">
                     <div class="metric-card">
                         <div class="metric-value">28.9%</div>
                         <div class="metric-label">26-35岁占比<br>苏州样本</div>
@@ -2232,7 +2463,7 @@
 
                 <div class="kpi-block" style="margin-top: 24px;">
                     <div class="kpi-title">📊 关键KPI监测</div>
-                    <div class="kpi-grid" style="grid-template-columns: repeat(4, 1fr);">
+                    <div class="kpi-grid kpi-grid-4">
                         <div class="kpi-item">
                             <div class="kpi-value" style="font-size: 18px;">医保支付占比</div>
                             <div class="kpi-label">省/市/连锁三层追踪</div>
@@ -2328,7 +2559,7 @@
                         三路径执行法则（以"人"为抓手）
                     </div>
                     <div class="card-content">
-                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                        <div class="grid-3-col">
                             <div style="text-align: center; padding: 20px; background: rgba(212, 168, 83, 0.1); border-radius: 8px;">
                                 <div style="font-size: 24px; margin-bottom: 8px;">💰</div>
                                 <div style="font-weight: 600; color: var(--primary-dark);">愿意卖</div>
@@ -2460,7 +2691,7 @@
                         包装优化四原则
                     </div>
                     <div class="card-content">
-                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                        <div class="grid-2-col">
                             <div style="padding: 16px; background: rgba(212, 168, 83, 0.08); border-radius: 8px;">
                                 <div style="font-weight: 600; color: var(--primary-dark); margin-bottom: 8px;">1. 超级视觉符号</div>
                                 <div style="font-size: 14px; color: var(--text-secondary);">为单品/系列打造强记忆点（如红唇符号、数字"3"），在同类包装中"跳出来"</div>
@@ -2798,7 +3029,7 @@
                     </div>
                 </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px;">
+                <div class="grid-2-col" style="margin-top: 24px;">
                     <div class="card" style="border-left: 4px solid var(--accent-green);">
                         <div class="card-title">
                             <span class="icon">⚡</span>
@@ -2837,7 +3068,7 @@
                     <h3 class="subsection-title">核心KPI（目标-路径-衡量）</h3>
                 </div>
 
-                <div class="kpi-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="kpi-grid kpi-grid-3">
                     <div class="kpi-block">
                         <div class="kpi-title">🎯 KA月单产</div>
                         <div class="kpi-item">
@@ -2919,7 +3150,7 @@
                     <h3 class="subsection-title">时间表（90/180/365天）</h3>
                 </div>
 
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+                <div class="timeline-grid">
                     <div class="card" style="border-top: 4px solid var(--accent-green);">
                         <div class="card-title" style="color: var(--accent-green);">
                             <span class="icon">⚡</span>
@@ -3129,7 +3360,7 @@
                     <h3 class="subsection-title">治理与稽核闭环（可执行的组织化机制）</h3>
                 </div>
 
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+                <div class="grid-2-col" style="gap: 24px;">
                     <div class="card">
                         <div class="card-title">
                             <span class="icon">📊</span>
@@ -3215,7 +3446,7 @@
                         维D与小柴胡产品线投入
                     </div>
                     <div class="card-content">
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="grid-2-col">
                             <div style="padding: 20px; background: rgba(52, 152, 219, 0.08); border-radius: 8px;">
                                 <div style="font-weight: 600; color: var(--primary-dark); margin-bottom: 12px;">维D（纯线下策略的闭环试点）</div>
                                 <ul style="font-size: 14px; color: var(--text-secondary);">
@@ -3270,7 +3501,7 @@
                     <h3 class="subsection-title">跨部门配合（请统筹资源与机制保障）</h3>
                 </div>
 
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+                <div class="grid-3-col" style="gap: 24px;">
                     <div class="card">
                         <div class="card-title">
                             <span class="icon">📚</span>
@@ -3337,7 +3568,7 @@
                     </div>
                 </div>
 
-                <div class="kpi-grid" style="margin-top: 24px; grid-template-columns: repeat(5, 1fr);">
+                <div class="kpi-grid kpi-grid-5" style="margin-top: 24px;">
                     <div class="kpi-block">
                         <div class="kpi-title">📈 OTX增长</div>
                         <div class="kpi-item">
@@ -3444,4 +3675,3 @@
 </body>
 </html>
 
-<!-- Updated: Tue Dec  2 18:13:18 CST 2025 -->
